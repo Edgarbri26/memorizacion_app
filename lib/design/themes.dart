@@ -14,10 +14,11 @@ class Themes {
       // # news text style #
       headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.normal),
       headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.normal),
-      //############################
+      //####################
       bodyLarge: TextStyle(fontSize: 27, fontWeight: FontWeight.normal),
       bodyMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
       bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
     ),
   );
 }
+                            
