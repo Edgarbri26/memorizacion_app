@@ -8,7 +8,7 @@ class Themes {
     fontFamily: 'Courier Prime',
     primaryColor: MyColors.primary,
     textTheme: const TextTheme(
-      displayLarge: TextStyle(fontSize: 54, fontWeight: FontWeight.normal),
+      displayLarge: TextStyle(fontSize: 54, fontWeight: FontWeight.w400),
       displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.normal),
       displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
       // # news text style #
@@ -21,4 +21,3 @@ class Themes {
     ),
   );
 }
-                            

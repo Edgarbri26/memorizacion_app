@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memorizacion_app/design/colors.dart';
 
 class MyHomePage extends StatefulWidget {
   
@@ -15,8 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 10,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("appBar title"),
+        backgroundColor: MyColors.primary,
+        title: Text("appBar title", style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: MyColors.light),),
       ),
     );
   }
