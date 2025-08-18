@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memorizacion_app/design/themes.dart';
-import 'package:memorizacion_app/pages/home_page.dart';
+import 'package:memorizacion_app/widgets/home_page.dart';
 
 class MemoApp extends StatelessWidget {
   const MemoApp({super.key});

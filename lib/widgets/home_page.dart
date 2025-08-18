@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memorizacion_app/design/my_colors.dart';
+import 'package:memorizacion_app/design/spacing.dart';
+import 'package:memorizacion_app/services/database_services.dart';
 import 'package:memorizacion_app/widgets/app_bar_timer.dart';
 import 'package:memorizacion_app/widgets/nav_bar.dart';
 
@@ -23,9 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              // Encabezado
               const AppBarTimer(),
-              // const SizedBox(height: 20.0),
               // Pares
               Container(
                 width: double.infinity,

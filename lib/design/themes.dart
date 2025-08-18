@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memorizacion_app/design/colors.dart';
+import 'package:memorizacion_app/design/my_colors.dart';
 
 class Themes {
   Themes._();
