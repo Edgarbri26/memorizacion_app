@@ -39,34 +39,58 @@ class _MyHomePageState extends State<MyHomePage> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const Spacer(),
               // Puntuación
-              const Text(
-                '5/5',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 72.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                '10.23',
-                style: TextStyle(color: Colors.white, fontSize: 24.0),
-              ),
-              const Spacer(),
-              // Estadísticas
-              const Align(
-                alignment: Alignment.bottomLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Media: 3.5', style: TextStyle(color: Colors.white)),
-                    Text(
-                      'Mejor: 3/4 7.5s',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text('cuenta: 10', style: TextStyle(color: Colors.white)),
-                  ],
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    // Acción cuando se pulsa la puntuación
+                    print('¡Puntuación presionada!');
+                  },
+                  child: Column(
+                    children: const [
+                      Expanded(
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                '5/6',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 72.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '10.23',
+                                style: TextStyle(color: Colors.white, fontSize: 24.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // Estadísticas
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Media: 3.5',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              'Mejor: 3/4 7.5s',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              'cuenta: 10',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 20.0),
