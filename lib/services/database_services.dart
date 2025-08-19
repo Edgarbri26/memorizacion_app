@@ -50,8 +50,8 @@ class DatabaseServices {
 
   void addMemo(
     int ponits,
-    String Wpairs,
-    String Gpairs,
+    String wPairs,
+    String gPairs,
     Float time,
     String date,
   ) async {
@@ -60,8 +60,8 @@ class DatabaseServices {
       _memoTableName,
       {
         _memoColumnPoints: ponits,
-        _memoColumnWrittenPairs: Wpairs,
-        _memoColumnGeneratedPairs: Gpairs,
+        _memoColumnWrittenPairs: wPairs,
+        _memoColumnGeneratedPairs: gPairs,
         _memoColumntime: time,
         _memoColumnDate: date
       }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memorizacion_app/design/spacing.dart';
 
 class Bodyhome extends StatefulWidget {
   const Bodyhome({super.key});
@@ -10,46 +11,58 @@ class Bodyhome extends StatefulWidget {
 class _BodyhomeState extends State<Bodyhome> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-          child: const Text(
-            '[Pulse para ver los pares]',
-            style: TextStyle(color: Colors.white, fontSize: 18.0),
-            textAlign: TextAlign.center,
-          ),
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          // Acción cuando se pulsa la puntuación
+          print('¡Puntuación presionada!');
+        },
+        child: Column(
+          children: const [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '5/6',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 72.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '10.23',
+                    style: TextStyle(color: Colors.white, fontSize: 24.0),
+                  ),
+                ],
+              ),
+            ),
+            // Estadísticas
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: Spacing.sm,
+                horizontal: 0.0,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Media: 3.5', style: TextStyle(color: Colors.white)),
+                    Text(
+                      'Mejor: 3/4 7.5s',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text('cuenta: 10', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        const Spacer(),
-        // Puntuación
-        const Text(
-          '5/5',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 72.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Text(
-          '10.23',
-          style: TextStyle(color: Colors.white, fontSize: 24.0),
-        ),
-        const Spacer(),
-        // Estadísticas
-        const Align(
-          alignment: Alignment.bottomLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Media: 3.5', style: TextStyle(color: Colors.white)),
-              Text('Mejor: 3/4 7.5s', style: TextStyle(color: Colors.white)),
-              Text('cuenta: 10', style: TextStyle(color: Colors.white)),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
