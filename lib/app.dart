@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:memorizacion_app/config/app_routes.dart';
 import 'package:memorizacion_app/design/themes.dart';
 import 'package:memorizacion_app/widgets/home_page.dart';
+import 'package:memorizacion_app/pages/configuration.dart';
 
 class MemoApp extends StatelessWidget {
   const MemoApp({super.key});
@@ -11,8 +13,18 @@ class MemoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Memorizacion Demo',
       theme: Themes.defaultTheme,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case AppRoutes.configuration:
+            return MaterialPageRoute(
+              builder: (context) => const ConfigurationPages(title: 'Configuración'),
+            );
+          default:
+            return MaterialPageRoute(
+              builder: (context) => const MyHomePage(title: 'Memorizacion Home'),
+            );
+        }
+      },
     );
   }
 }
-

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memorizacion_app/design/my_colors.dart';
 import 'package:memorizacion_app/design/spacing.dart';
 import 'package:memorizacion_app/widgets/buttons/buttons_mode.dart';
+import 'package:memorizacion_app/config/app_routes.dart';
 
 class AppBarTimer extends StatefulWidget {
   const AppBarTimer({super.key});
@@ -34,6 +35,7 @@ class _AppBarTimerState extends State<AppBarTimer> {
             onPressed: () {
               // Acción cuando se pulsa el botón
               print('¡Botón de configuración presionado!');
+              Navigator.of(context).pushNamed(AppRoutes.configuration);
             },
           ),
           // titulo
