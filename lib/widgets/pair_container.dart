@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class PairContainer extends StatelessWidget {
+class PairContainer extends StatefulWidget {
   final String generatedPairs;
-  final String writtenPairs;
-  const PairContainer({super.key, required this.generatedPairs, required this.writtenPairs});
+  final String writtenPairs; // Nuevo parámetro opcional
+  final bool isRunning;
+  const PairContainer({super.key, required this.generatedPairs,  required this.writtenPairs, required this.isRunning });
 
+  @override
+  State<PairContainer> createState() => _PairContainerState();
+}
+
+class _PairContainerState extends State<PairContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,21 +25,23 @@ class PairContainer extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(
-            generatedPairs,
+            widget.generatedPairs,
             style: TextStyle(color: Colors.white, fontSize: 18.0),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 10), // Espacio entre los textos
+          if (widget.writtenPairs.isNotEmpty && !widget.isRunning) ...[  
           Text( 
             'Pares Escritos:',
             style: TextStyle(color: Colors.white, fontSize: 18.0),
             textAlign: TextAlign.center,
           ),
           Text(
-            writtenPairs,
+            widget.writtenPairs,
             style: TextStyle(color: Colors.white, fontSize: 18.0),
             textAlign: TextAlign.center,
           ),
+        ],
         ],
       ),
     );

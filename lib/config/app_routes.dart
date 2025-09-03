@@ -1,8 +1,6 @@
-
-
 class AppRoutes {
   AppRoutes._();
 
   static const String home = '/';
-  static const String configuration = 'configuration';
+  static const String settings = 'Settings';
 }

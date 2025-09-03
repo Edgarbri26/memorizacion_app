@@ -1,79 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:memorizacion_app/design/my_colors.dart';
 import 'package:memorizacion_app/widgets/app_bar_timer.dart';
+import 'package:memorizacion_app/widgets/bodyhome.dart';
 import 'package:memorizacion_app/widgets/nav_bar.dart';
-
+import 'package:memorizacion_app/services/pairs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class MyHomePage extends StatefulWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});
+  // final String title;
+  const MyHomePage({super.key, required});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
+
 class _MyHomePageState extends State<MyHomePage> {
   // final DatabaseServices _databaseServices = DatabaseServices.instance;
+  final Pairs _pairs = Pairs();
+  int _selectedIndex = 0;
+  bool _isTimerRunning = false;
+  String _numPairs = '00';
+  String _omittedPairs = '';
+  String _omittedLetters = '';
+
+
+    @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  void _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _omittedPairs = prefs.getString('omittedPairs') ?? '';
+      _omittedLetters = prefs.getString('omittedLetters') ?? '';
+      _numPairs = prefs.getString('numPairs') ?? '5';
+    });
+  }
+
+  void _saveSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('numPairs', _numPairs);
+  }
+
+
+
+
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _updateTimerState(bool isRunning) {
+    setState(() {
+      _isTimerRunning = isRunning;
+    });
+  }
+  
+  void _updateNumPairs(String newNum) {
+    setState(() {
+      _numPairs = newNum;
+      _saveSettings();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.dark, // Fondo oscuro
+      appBar: _isTimerRunning ? null : AppBar(
+        backgroundColor: MyColors.dark, // Fondo oscuro para la AppBar
+        elevation: 0, // Sin sombra
+        title: AppBarTimer(
+          onPressedNum: _updateNumPairs,
+          numPairs: _numPairs,
+          title: 'Clasico',
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              // Encabezado
-              const AppBarTimer(),
-              // const SizedBox(height: 20.0),
-              // Pares
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: const Text(
-                  '[Pulse para ver los pares]',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  textAlign: TextAlign.center,
-                ),
+          child: 
+              Bodyhome(
+                omittedLetters: _omittedLetters,
+                omittedPairs: _omittedPairs,
+                pairs: _pairs,
+                numPairs: int.parse(_numPairs),
+                onTimerStateChanged: _updateTimerState,
               ),
-              const Spacer(),
-              // Puntuación
-              const Text(
-                '5/5',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 72.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                '10.23',
-                style: TextStyle(color: Colors.white, fontSize: 24.0),
-              ),
-              const Spacer(),
-              // Estadísticas
-              const Align(
-                alignment: Alignment.bottomLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Media: 3.5', style: TextStyle(color: Colors.white)),
-                    Text(
-                      'Mejor: 3/4 7.5s',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text('cuenta: 10', style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20.0),
               // Barra de navegación inferior
-              NavBar(),
-            ],
-          ),
+              // NavBar(),
         ),
       ),
     );

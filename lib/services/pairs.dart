@@ -1,14 +1,17 @@
 import 'dart:math';
 
-class Pares {
+class Pairs {
+  List<String> generatedPairs = [];
+  List<String> writtenPairs = [];
 
   List<String> generatePairs(
     int count,
     List<String> omitted,
     List<String> omittedPair,
+    
   ) {
     const baseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    //se convierte en mayusculas para asegurarse 
+    //se convierte en mayusculas para asegurarse
     final omittedUpper = omitted.map((s) => s.toUpperCase()).toList();
     final omittedPairUpper = omittedPair.map((s) => s.toUpperCase()).toList();
 
@@ -42,5 +45,18 @@ class Pares {
       }
     }
     return pairs.toList();
+  }
+
+  int verifyPoints() {
+    int sussess = 0;
+    int error = 0;
+    for (int i = 0; i < writtenPairs.length; i++) {
+      if (generatedPairs[i] == writtenPairs[i]) {
+        sussess++;
+      }
+    }
+    error = writtenPairs.length - sussess;
+
+    return sussess - error;
   }
 }
